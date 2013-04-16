@@ -11,7 +11,7 @@ exports.run = function(t, concurrency, total) {
           count ++;
           if(count % (Math.floor(total / 10)) == 0) {
             console.log(count);
-          }s
+          }
           if(count == total) {
             console.log("Total: " + (Date.now() - start) / 1000 + "s");
           }
