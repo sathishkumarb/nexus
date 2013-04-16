@@ -9,7 +9,7 @@
   },
   "main":"./lib/index.js",
   "scripts": {
-    "test": "./test/example.js"
+    "test": "./test/test.js"
   },
   "engines":{
     "node":"*"
