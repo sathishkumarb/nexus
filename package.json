@@ -1,0 +1,16 @@
+{
+  "name":"nexus",
+  "keywords":[],
+  "description":"Nexus",
+  "version":"0.1.0",
+  "repository":{
+    "type":"git",
+    "url":"git://github.com/olegp/nexus.git"
+  },
+  "main":"./index.js",
+  "engines":{
+    "node":"*"
+  },
+  "dependencies":{
+  }
+}
