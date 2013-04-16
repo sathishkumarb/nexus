@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-exports.run = function(module) {
+exports.run = function(module, breakOnFail) {
   try {
     var packageJSON = fs.readFileSync(module + "package.json");
     var package = JSON.parse(packageJSON);
@@ -14,12 +14,17 @@ exports.run = function(module) {
       tests[test]();
       console.log(test + " PASSED");
     } catch(e) {
-      console.log(test + " FAILED" + (e.message ? ': ' + e.message : ''))
+      console.log(test + " FAILED" + (e.message ? ': ' + e.message : ''));
+      if(breakOnFail) {
+        console.error(e.stack);
+        console.log();
+        return;
+      }
     }
   }
   console.log();
 }
 
 if (require.main === module) {
- exports.run(process.argv[2]);
+ exports.run(process.argv[2], process.argv[3] == '-b');
 }
