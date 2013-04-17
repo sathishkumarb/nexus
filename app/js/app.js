@@ -12,12 +12,17 @@ angular.module('app', [])
     redirectTo:'/'
   });
 }]).controller('MessagesCtrl',
-  ['$scope', function ($scope) {
+  ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
     $scope.email = "john@smith.com";
-    $scope.messages = [
-      {time:Date.now(), text:"hello"},
-      {time:Date.now(), text:"world"}
-    ];
+    $http.get('/api').success(function(data) {
+       //$scope.messages = data;
+      $rootScope.$broadcast('messages', data);
+    });
+
+    $scope.$on('messages', function(event, data) {
+      $scope.messages = data;
+    });
+
     $scope.verify = function () {
       return $scope.email.indexOf('@') == -1;
     }
